@@ -1,0 +1,33 @@
+Liquidity Model 流动性模型Learn how the liquidity model works in Aave v4.
+了解流动性模型在Aave v4中的工作原理。
+
+
+The liquidity management in Aave v4 operates through the coordinated interaction of Liquidity Hubs, Spokes, and Reserves. Understanding how these components work together is essential for grasping how capital flows through the protocol and how new markets can access established liquidity pools.
+Aave v4中的流动性管理是通过流动性枢纽、辐条和储备的协同作用来运作的。理解这些组件如何协同工作，对于掌握资本如何通过协议流动以及新市场如何进入已建立的流动性池至关重要。
+
+Liquidity Hubs 流动性中心
+Liquidity Hubs are the central settlement layer of Aave v4. Each Hub aggregates liquidity, manages credit lines, enforces risk parameters, and operates under governance controls. This design allows new markets to tap into established pools without fragmenting liquidity.
+流动性枢纽是Aave v4的中心结算层。每个中心聚集流动性，管理信贷额度，强制执行风险参数，并在治理控制下运行。这种设计允许新市场在不分散流动性的情况下利用已建立的资金池。
+
+Assets are held at the Liquidity Hub (LH), which governs how Spokes can access and utilize them. Governance defines liquidity caps, credit allocations, and risk parameters for each supported asset.
+资产被持有在流动性中心（LH），它控制着辐条如何访问和利用它们。治理为每个支持的资产定义流动性上限、信贷分配和风险参数。
+
+Different Hub types can be deployed for specific purposes — from conservative stablecoin liquidity to higher-yield, higher-risk configurations — each operating under its own governance model.
+从保守的稳定币流动性到高收益、高风险的配置，不同的中心类型可以被部署为特定的目的；每个中心都在自己的治理模式下运行。
+
+Spokes 辐条
+Spokes are specialized smart contracts that connect to Hubs. They define user-facing logic such as interest rate models, collateral requirements, and liquidation conditions while drawing on Hub liquidity. This keeps the complexity of user interactions isolated from the Hub layer.
+辐条是连接到集线器的专用智能合约。它们定义了面向用户的逻辑，如利率模型、抵押品要求和清算条件，同时利用中心流动性。这将用户交互的复杂性与集线器层隔离开来。
+
+Credit lines govern Spoke access to Hub assets, setting limits and conditions for borrowing. A Spoke may connect to multiple Hubs, giving it flexibility to tap different risk profiles or liquidity sources.
+信贷额度控制着对中心资产的辐条访问，为借贷设定限制和条件。辐条可以连接到多个中心，使其能够灵活地利用不同的风险配置或流动性来源。
+
+Crucially, risks are isolated at the Spoke level. Issues with a single Spoke do not spread to Hubs or other Spokes, allowing innovation without systemic compromise.
+至关重要的是，风险被隔离在辐条级别。单一辐条的问题不会扩散到集线器或其他辐条，允许创新而不需要系统性妥协。
+
+Reserves 储备
+Reserves are managed at the Spoke level and represent the accounting units for specific assets within each Spoke. They track deposits, borrows, repayments, and interest accrual while enforcing supply caps and user-specific configurations.
+储备在辐条级别上进行管理，并代表每个辐条内特定资产的会计单位。他们跟踪存款、借款、偿还和利息积累，同时执行供应上限和用户特定配置。
+
+Governance defines how much of the Hub’s underlying assets can be allocated to each Spoke reserve through credit lines, adjusting dynamically based on demand and risk conditions.
+银行治理决定了中央银行的基础资产中有多少可以通过信贷额度分配到每个分支储备，并根据需求和风险状况动态调整。
